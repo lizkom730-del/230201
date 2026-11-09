@@ -1,0 +1,7 @@
+---
+- hosts: websevers
+  become: true
+  vars:
+    nginx_user: http
+  roles:
+    - nginx
