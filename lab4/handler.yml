@@ -1,0 +1,15 @@
+---
+- name: Handler Demo
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Create a dummy config file
+      copy:
+        content: "Config generated at {{ ansible_date_time.time }}\n"
+        dest: /tmp/demo.conf
+      notify: Restart Demo Service
+
+  handlers:
+    - name: Restart Demo Service
+      debug:
+        msg: "Handler triggered: Service restarted!"
